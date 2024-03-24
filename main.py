@@ -1,18 +1,15 @@
-import logging
-from threading import Thread
+from multiprocessing import Process
 
 from socket_server import run_socker_server
 from http_server import run_http_server
 
 
 if __name__ == "__main__":
-    logging.basicConfig(level=logging.DEBUG, format="%(asctime)s - %(message)s")
+    socket_process = Process(target=run_socker_server)
+    socket_process.start()
 
-    socket_thread = Thread(target=run_socker_server)
-    socket_thread.start()
+    http_process = Process(target=run_http_server)
+    http_process.start()
 
-    http_thread = Thread(target=run_http_server)
-    http_thread.start()
-
-    http_thread.join()
-    socket_thread.join()
+    http_process.join()
+    socket_process.join()

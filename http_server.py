@@ -54,6 +54,8 @@ class MyHandler(BaseHTTPRequestHandler):
 
 
 def run_http_server():
+    logging.basicConfig(level=logging.DEBUG, format="%(asctime)s - %(message)s")
+    
     try:
         with HTTPServer((HTTP_HOST, HTTP_PORT), MyHandler) as httpd:
             logging.info(f"HTTP server started on {HTTP_HOST}:{HTTP_PORT}")

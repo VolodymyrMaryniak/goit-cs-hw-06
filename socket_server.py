@@ -9,6 +9,8 @@ URI = "mongodb://mongoserver:27017"
 
 
 def run_socker_server():
+    logging.basicConfig(level=logging.DEBUG, format="%(asctime)s - %(message)s")
+    
     try:
         with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as server_socket:
             logging.info(f"Socket server started on {SOCKET_HOST}:{SOCKET_PORT}")
